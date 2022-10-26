@@ -4,14 +4,19 @@ import os
 import io
 from contextlib import contextmanager
 
-from unittest import mock
-from solucion import ListaDeLaCompra,MenuPrompt,Habilidad,Divisas,Menu,MenuComas,MenuPreguntas
+from unittest import mock, skipIf
+from habilidades import MenuPrompt,Habilidad,Divisas,Menu,MenuComas,MenuPreguntas
 
-#from habilidades import ListaDeLaCompra,MenuPrompt,Habilidad,Divisas,Menu,MenuComas,MenuPreguntas
+SUBCOMANDOS = False
 
-# if os.environ.get('SOLUCION'):
-#     # Usar las funciones de solución en lugar de habilidades
-#     from solucion import ListaDeLaCompra, MenuPrompt, Habilidad,Divisas,Menu,MenuComas,MenuPreguntas
+try:
+    from habilidades import HabilidadSubcomandos, ListaDeLaCompra
+    print("Se va a comprobar el apartado de Subcomandos")
+    print("Para evitarlo, comenta las clases relacionadas con ese apartado.")
+    SUBCOMANDOS = True
+except ImportError:
+    print("NO se va a comprobar el apartado Subcomandos porque las clases "
+          "HabilidadSubcomandos y ListaDeLaCompra no han sido desarrolladas")
 
 
 @contextmanager
@@ -91,11 +96,13 @@ class TestHabilidades(unittest.TestCase):
             assert line in out
 
     def test_listadelacompra(self):
+        from habilidades import ListaDeLaCompra
         t = ListaDeLaCompra(nombre='mi lista de la compra')
         t.invocar('insertar', 'Cebollas')
         assert 'Cebollas' in t.productos
 
-    def test_menu_complejas(self):
+    @skipIf(not SUBCOMANDOS, "No se ha desarrollado el apartado de subcomandos")
+    def test_menu_subcomandos(self):
         habilidades = [
             Divisas('usd2euro'),
             Divisas('euro2usd', tasa=1/0.85),

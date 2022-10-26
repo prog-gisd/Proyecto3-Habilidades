@@ -31,7 +31,7 @@ class Menu:
         self.habilidades = {}
         raise NotImplementedError
 
-    def ayuda(self, comando=None):
+    def ayuda(self, habilidad=None):
         '''
         Muestra ayuda del uso del menú. Si no se especifica una habilidad,
         se muestra la ayuda general. Esta ayuda general muestra la lista
@@ -39,15 +39,15 @@ class Menu:
 
         Si se especifica una habilidad, se muestra su ayuda específica.
         '''
-        if not comando:
+        if not habilidad:
             print('Habilidades disponibles:')
             for hab in self.habilidades.values():
                 print(f'\t{hab.nombre}:\t{hab.descripcion}')
             return
-        if comando not in self.habilidades:
-            print(f'Habilidad no encontrada: {comando}')
+        if habilidad not in self.habilidades:
+            print(f'Habilidad no encontrada: {habilidad}')
             return
-        self.habilidades[comando].ayuda()
+        self.habilidades[habilidad].ayuda()
 
     def lanzar(self):
         '''Recibe instrucciones del usuario en bucle.'''
@@ -95,65 +95,77 @@ def prueba_menu_simple():
     m.emular('ayuda noexiste')
     m.emular('ayuda bitcoin2euro')
 
-class HabilidadCompleja(Habilidad):
-    '''Un tipo de habilidad que permite invocar varios sub-comandos'''
+class ListaDeLaCompra(Habilidad):
+    """Gestión muy simple de lista de la compra"""
 
-    def subcomandos(self):
-        '''
-        Devuelve un diccionario de subcomandos a funciones.
-        
-        p.e.:
-            {
-            'insertar': self.insertar_producto,
-            'borrar': self.borrar_producto,
-            }
-        '''
-        return {}
-
-    def invocar(self, subcomando, *args):
+    def invocar(self, *args):
         raise NotImplementedError
 
     def ayuda(self):
-        print('Comando:\t', self.nombre)
-        print('Descripción:\t', self.descripcion)
-        print('Subcomandos:')
-        # Muestra información de cada uno de los subcomandos
-        raise NotImplementedError
+        print("Acepta las acciones: insertar, borrar, listar y cantidad")
 
 
-class ListaDeLaCompra(HabilidadCompleja):
-  '''Gestión muy simple de lista de la compra'''
+# # Descomentar para desarrollar el apartado de Subcomandos
+# class HabilidadSubcomandos(Habilidad):
+#     '''Un tipo de habilidad que permite invocar varios sub-comandos'''
 
-  def __init__(self, *args, **kwargs):
-    super().__init__(*args, **kwargs)
-    self.productos = []
+#     def subcomandos(self):
+#         '''
+#         Devuelve un diccionario de subcomandos a funciones.
+        
+#         p.e.:
+#             {
+#             'insertar': self.insertar_producto,
+#             'borrar': self.borrar_producto,
+#             }
+#         '''
+#         return {}
 
-  def subcomandos(self):
-    return {
-      'insertar': self.insertar,
-      'borrar': self.borrar,
-      'listar': self.listar,
-      'cantidad': self.cantidad,
-      }
+#     def invocar(self, subcomando, *args):
+#         raise NotImplementedError
 
-  def insertar(self, producto):
-    '''Insertar un producto nuevo'''
-    self.productos.append(producto)
+#     def ayuda(self):
+#         print('Comando:\t', self.nombre)
+#         print('Descripción:\t', self.descripcion)
+#         print('Subcomandos:')
+#         # Muestra información de cada uno de los subcomandos
+#         raise NotImplementedError
 
-  def listar(self):
-    '''Mostrar el listado de productos'''
-    for ix, producto in enumerate(self.productos):
-      print(f'{ix}: {producto}')
+## Descomentar para desarrollar el apartado de subcomandos
+# class ListaDeLaCompra(HabilidadSubcomandos):
+#   '''Gestión muy simple de lista de la compra'''
 
-  def borrar(self, numero):
-    '''Borrar un producto'''
-    self.productos.pop(int(numero))
+#   def __init__(self, *args, **kwargs):
+#     super().__init__(*args, **kwargs)
+#     self.productos = []
 
-  def cantidad(self):
-    '''Mostrar el número de productos en la lista'''
-    return len(self.productos)
+#   def subcomandos(self):
+#     return {
+#       'insertar': self.insertar,
+#       'borrar': self.borrar,
+#       'listar': self.listar,
+#       'cantidad': self.cantidad,
+#       }
 
-def prueba_menu_complejas():
+#   def insertar(self, producto, precio, categoría, etiquetas="", prioridad="1"):
+#     '''Insertar un producto nuevo'''
+#     self.productos.append(producto, float(precio), categoria, etiquetas.split(','), int(prioridad))
+
+#   def listar(self):
+#     '''Mostrar el listado de productos'''
+#     for ix, producto in enumerate(self.productos):
+#       print(f'{ix}: {producto}')
+
+#   def borrar(self, numero):
+#     '''Borrar un producto'''
+#     self.productos.pop(int(numero))
+
+#   def cantidad(self):
+#     '''Mostrar el número de productos en la lista'''
+#     return len(self.productos)
+
+
+def prueba_menu_subcomandos():
     habilidades = [
         Divisas('bitcoin2euro', tasa=49929.38),
         Divisas('euro2bitcoin', tasa=1/49929.38),
@@ -162,8 +174,8 @@ def prueba_menu_complejas():
     m = Menu(habilidades)
     m.emular('ayuda')
     m.emular('ayuda listadelacompra')
-    m.emular('listadelacompra insertar "1 kg de plátanos canarios"')
-    m.emular('listadelacompra insertar "Pimientos"')
+    m.emular('listadelacompra insertar "plátanos canarios" 5.25 Alimentación "frutas,postre"')
+    m.emular('listadelacompra insertar Pimientos 1.50 Alimentación')
     m.emular('listadelacompra listar')
     m.emular('listadelacompra borrar 0')
     m.emular('listadelacompra listar')
@@ -171,5 +183,6 @@ def prueba_menu_complejas():
 if __name__ == '__main__':
     print('#' * 10, 'Prueba menú simple')
     prueba_menu_simple()
-    print('#' * 10, 'Prueba menú complejas')
-    prueba_menu_complejas()
+    ## Descomentar para probar el apartado de subcomandos
+    # print('#' * 10, 'Prueba menú con subcomandos')
+    # prueba_menu_subcomandos()
