@@ -2,17 +2,17 @@
 
 <br/><br/>
 
-# Práctica 3 - Habilidades
+# Proyecto 3 - Habilidades
 
 
 ## Contenido
 
-- [Práctica 3 - Habilidades](#práctica-3---habilidades)
+- [Proyecto 3 - Habilidades](#proyecto-3---habilidades)
   - [Contenido](#contenido)
   - [Objetivos](#objetivos)
   - [Requisitos previos](#requisitos-previos)
   - [Introducción](#introducción)
-  - [Actividades de la práctica](#actividades-de-la-práctica)
+  - [Actividades del proyecto](#actividades-del-proyecto)
     - [0. Descarga del proyecto](#0-descarga-del-proyecto)
     - [1. Clase habilidad básica](#1-clase-habilidad-básica)
     - [2. Mejorar los mensajes de ayuda](#2-mejorar-los-mensajes-de-ayuda)
@@ -26,7 +26,7 @@
     - [10. Otras mejoras opcionales](#10-otras-mejoras-opcionales)
   - [Anexos](#anexos)
     - [Evaluación](#evaluación)
-    - [Entrega de la práctica](#entrega-de-la-práctica)
+    - [Entrega del proyecto](#entrega-del-proyecto)
     - [Convenciones](#convenciones)
     - [Enlaces](#enlaces)
 
@@ -46,31 +46,33 @@ Para resolverla, es necesaria una versión de Python igual o superior a 3.10, y 
 
 ## Introducción
 
-En prácticas anteriores se han desarrollado varias funciones independientes para cumplir diferentes cometidos: conversión de divisas, lista de la compra, etc. También hemos visto cómo desarrollar menús interactivos que ofrecı́an esas funcionalidades al usuario.
+En proyectos anteriores se han desarrollado varias funciones independientes para cumplir diferentes cometidos: conversión de divisas, lista de la compra, etc.
+También hemos visto cómo desarrollar menús interactivos que ofrecı́an esas funcionalidades al usuario.
 
-En esta práctica el objetivo es conseguir que cualquier desarrollador pueda programar sus propias funcionalidades, compartirlas con el resto, e introducir funcionalidades desarrolladas por otros usuarios de manera sencilla. Nos inspiraremos directamente en el ejemplo de asistentes personales (p.e., Alexa, Google Assistant y Mycroft), que permiten añadir nuevas funcionalidades personalizadas.
+En este proyecto el objetivo es conseguir que cualquier desarrollador pueda programar sus propias funcionalidades, compartirlas con el resto, e introducir funcionalidades desarrolladas por otros usuarios de manera sencilla.
+Nos inspiraremos directamente en el ejemplo de asistentes personales (p.e., Alexa, Google Assistant y Mycroft), que permiten añadir nuevas funcionalidades personalizadas.
 
-Nuestra solución de prácticas anteriores tiene dos puntos débiles para conseguir este objetivo.
+Nuestra solución de proyectos anteriores tiene dos puntos débiles para conseguir este objetivo.
 Primero de todo, nos encontramos que algunas funciones están muy relacionadas (p.e., convertir a euros y convertir a bitcoins, o las diferentes funciones relacionadas con la lista de la compra), pero no hay nada en el código que las conecte, no existe una relación explı́cita.
 Es decir, para saber qué funciones están relacionadas hay que leer tanto el código como la documentación con detenimiento.
 Además de dificultar el entendimiento del código, eso nos puede llevar a código desactualizado y a errores. Por otro lado, para crear los menús de usuario vemos que hay que introducir manualmente las funciones, ya sea usando sentencias de control (**proyecto 1**) o un diccionario de comandos a funciones (**proyecto 2**).
 
 Para solucionar estos problemas, haremos dos cosas.
 
-- **Introduciremos el concepto genérico de habilidad**. Ası́, nos encontrarı́amos la habilidad de convertir divisas, la de gestionar la lista de la compra, etc. Cada una de estas habilidades puede encapsular internamente una o más funciones de las que ya desarrollamos en prácticas anteriores.
+- **Introduciremos el concepto genérico de habilidad**. Ası́, nos encontrarı́amos la habilidad de convertir divisas, la de gestionar la lista de la compra, etc. Cada una de estas habilidades puede encapsular internamente una o más funciones de las que ya desarrollamos en proyectos anteriores.
 - **Modificaremos nuestro menú para que acepte habilidades** en lugar de funciones.
 
-## Actividades de la práctica
+## Actividades del proyecto
 
 ### 0. Descarga del proyecto
 
-El primer paso para desarrollar la práctica es descargar los ficheros necesarios del repositorio de Github.
+El primer paso para desarrollar el proyecto es descargar los ficheros necesarios del repositorio de Github.
 El método más sencillo es a través del botón `Code->Download ZIP`.
-Los dos ficheros necesarios para la práctica son `habilidades.py` y `test.py`.
-El primero es un fichero de plantilla que contiene la definición de varias funciones que son útiles para la práctica (este será el fichero que se debe entregar en Moodle).
+Los dos ficheros necesarios para el proyecto son `habilidades.py` y `test.py`.
+El primero es un fichero de plantilla que contiene la definición de varias funciones que son útiles para el proyecto (este será el fichero que se debe entregar en Moodle).
 Para su edición, se puede usar cualquier IDE, aunque se recomienda Visual Studio Code.
 Para comprobar las soluciones, se proponen dos opciones.
-Por otro lado, el fichero `test.py`, se puede usar opcionalmente para comprobar que las funciones desarrolladas en la práctica funcionan correctamente, como veremos más adelante.
+Por otro lado, el fichero `test.py`, se puede usar opcionalmente para comprobar que las funciones desarrolladas en el proyecto funcionan correctamente, como veremos más adelante.
 
 El resto de instrucciones siguen las mismas [convenciones](#convenciones) que proyectos anteriores.
 
@@ -111,7 +113,7 @@ En nuestro caso, añadiremos un nombre para la habilidad y un pequeño texto de 
 El nombre nos permitirá diferenciar entre habilidades de la misma clase en nuestro menú, y la descripción será útil para el usuario cuando implementemos un menú.
 
 Si no se proporciona una descripción al crear una instancia, se reutilizará por defecto la documentación de la clase en cuestión.
-Esto es muy parecido a lo que hicimos en prácticas anteriores.
+Esto es muy parecido a lo que hicimos en proyectos anteriores.
 El resultado es este:
 
 <img src="./img/python.png" align=right width=100px>
@@ -316,7 +318,7 @@ esta confusión se puede aliviar utilizando valores por defecto y un buen diseñ
 ### 4. Habilidad de conversión de divisas
 
 En este apartado desarrollaremos una habilidad de conversión de divisas.
-Como vimos en la primera práctica, para convertir divisas (o criptomonedas) necesitamos la tasa de conversión.
+Como vimos en el primera proyecto, para convertir divisas (o criptomonedas) necesitamos la tasa de conversión.
 Hasta ahora utilizamos una tasa de conversión fija, que guardamos en una variable global.
 En este caso, como cada criptomoneda tiene una tasa de conversión diferente, serı́a razonable que la tasa fuera configurable y que cada instancia de la clase pudiera tener su propio valor.
 
@@ -498,7 +500,7 @@ Convertir una cantidad de la divisa original a la divisa objetivo
 
 ### 6. Habilidades de la lista de la compra 
 
-En este apartado vamos a crear una habilidad `ListaDeLaCompra`, con la misma funcionalidad que vimos en el proyecto anterior (`Proyecto3-Compra`).
+En este apartado vamos a crear una habilidad `ListaDeLaCompra`, con la misma funcionalidad que vimos en el proyecto anterior (`Proyecto2-Compra`).
 Podemos partir de la siguiente clase:
 
 
@@ -648,7 +650,7 @@ Subcomandos:
 
 ### 8. Refactorización y nuevas habilidades
 
-Ahora que tenemos todos los elementos en su lugar, es el momento de refactorizar el código de prácticas anteriores para adaptarlo al modelo de clases. En particular, se pide reimplementar las siguientes habilidades:
+Ahora que tenemos todos los elementos en su lugar, es el momento de refactorizar el código de proyectos anteriores para adaptarlo al modelo de clases. En particular, se pide reimplementar las siguientes habilidades:
 
 - Contador de vocales (con el nombre Contador), utilizando una habilidad simple.
 - Detector de palíndromos (con el nombre DetectorPalindromos), utilizando una habilidad simple.
@@ -706,7 +708,8 @@ Argumento 0:
 
 ### Evaluación
 
-El repositorio de la práctica contiene el fichero `test.py`. Los tests pueden invocarse en cualquier momento en la lı́nea de comando. Si todo está bien implementado, deberı́a obtenerse un resultado parecido a este:
+El repositorio del proyecto contiene el fichero `test.py`.
+Los tests pueden invocarse en cualquier momento en la lı́nea de comando. Si todo está bien implementado, deberı́a obtenerse un resultado parecido a este:
 
 <img src="./img/shell.png" align=right width=100px>
 
@@ -741,13 +744,13 @@ Ran 8 tests in 0.001s
 FAILED (errors=8)
 ```
 
-### Entrega de la práctica
+### Entrega del proyecto
 
-Para entregar la práctica, se deberá subir a Moodle en <a href="https://moodle.upm.es/titulaciones/oficiales/mod/assign/view.php?id=208687">este enlace</a> el fichero `habilidades.py`, conteniendo todas las funciones requeridas en la práctica. La práctica debe estar entregada en Moodle antes de las 23:59 del **Viernes 10 de Diciembre**.
+Para entregar el proyecto, se deberá subir a Moodle en la tarea "Entrega del proyecto 3".
 
 ### Convenciones
 
-Durante la práctica se utilizan tres tipos de código.
+Durante el proyecto se utilizan tres tipos de código.
 Por un lado, código a escribir en la línea de comandos (_command line_), también conocida como terminal o consola.
 En el ejemplo de abajo, vemos cómo ejecutamos
 el comando `python --version`, que imprime por pantalla la versión de Python en el sistema.
@@ -756,7 +759,7 @@ el comando `python --version`, que imprime por pantalla la versión de Python en
 
 ```shell
 $ python --version
-Python 3.8.10
+Python 3.10.12
 ```
 
 Por otro lado, hay fragmentos de sesión del intérprete de comandos de python.
@@ -766,8 +769,7 @@ Podemos acceder al intérprete directamente ejecutando el comando Python en nues
 
 ```shell
 $ python
-Python 3.8.10 (default, Jun  2 2021, 10:49:15) 
-[GCC 9.4.0] on linux
+Python 3.10.12 (main, Jun 11 2023, 05:26:28) [GCC 11.4.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> 
 ```
