@@ -536,7 +536,7 @@ Para probar el funcionamiento de la nueva clase, podemos hacerlo manualmente:
 [ ] Alimentación - Garbanzos - *** - 0.68 € - #cocido #hummus
 ```
 
-### 7. Habilidades con subcomandos (Opcional)
+### 7. Habilidades con subcomandos
 
 Como hemos visto en el apartado anterior, el método `invocar` se complica cuando tenemos habilidades que tienen diferentes acciones (o subcomandos) tales como "listar", "borrar", "editar".
 
