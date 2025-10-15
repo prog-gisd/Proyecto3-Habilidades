@@ -746,7 +746,7 @@ FAILED (errors=8)
 
 ### Entrega del proyecto
 
-Para entregar el proyecto, se deberá subir a Moodle en la tarea "Entrega del proyecto 3".
+Para la entrega final, solamente se deberá subir un único fichero comprimido en formato ZIP que contenga una carpeta por cada proyecto presentado. Cada carpeta debe incluir los ficheros correspondientes a ese proyecto. Es posible copiar o replicar cualquier fichero en las diferentes carpetas si se considera necesario para facilitar la organización. Esta entrega global se hará al finalizar todos los proyectos, siguiendo las indicaciones y fechas establecidas en Moodle.
 
 ### Convenciones
 
