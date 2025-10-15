@@ -82,9 +82,9 @@ Vamos a empezar por crear una clase simple para las habilidades.
 Por ahora, sólo consideraremos que las habilidades son una entidad (algo) que se puede invocar, y que nos proporcionan algún tipo de ayuda sobre su funcionamiento.
 Por ejemplo:
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 class Habilidad:
   
   def invocar(self):
@@ -96,7 +96,7 @@ class Habilidad:
 
 En este punto, podemos crear varias habilidades, pero no sirve para mucho porque todas las instancias hacen exactamente lo mismo. El resultado es igual que tener una función, pero con engorrosos pasos adicionales:
 
-<img src="./img/python-repl-vertical.png" align=right width=100px>
+<img src="./img/-repl-vertical.png" align=right width=100px>
 
 ```pycon
 >>> habilidad1 = Habilidad()
@@ -116,9 +116,9 @@ Si no se proporciona una descripción al crear una instancia, se reutilizará po
 Esto es muy parecido a lo que hicimos en proyectos anteriores.
 El resultado es este:
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 class Habilidad:
   '''Abstracción del concepto de habilidad en un asistente.'''
 
@@ -156,9 +156,9 @@ Se ha invocado la habilidad 2
 
 Además, podemos crear nuevas clases que hereden de la clase Habilidad:
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 class Saludar(Habilidad):
   """Saludar, dando el nombre indicado en self.nombre"""
   def invocar(self):
@@ -177,7 +177,7 @@ Ası́ que las instancias de la clase `Saludar` siguen teniendo un constructor p
 
 Podemos probar nuestras nuevas habilidades con el siguiente código:
 
-<img src="./img/python-repl-vertical.png" align=right width=100px>
+<img src="./img/-repl-vertical.png" align=right width=100px>
 
 ```pycon
 >>> mundo = Saludar('mundo')
@@ -194,7 +194,7 @@ Adiós desde España
 No obstante, tenemos un pequeño problema, las habilidades se crean sin descripción:
 
 
-<img src="./img/python-repl-vertical.png" align=right width=100px>
+<img src="./img/-repl-vertical.png" align=right width=100px>
 
 ```pycon
 >>> mundo.ayuda()
@@ -203,15 +203,15 @@ Sin descripción
 
 Podemos arreglar esto modificando nuestra clase original, añadiendo un constructor personalidado:
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 # Version 2 de la clase Saludar
 class Saludar(Habilidad):
   """Saludar, dando el nombre indicado en self.nombre"""
   def __init__(self, nombre):
     self.nombre = nombre
-    self.descripción = "Saludar, dando el nombre indicado en self.nombre"
+    self.descripcion = "Saludar, dando el nombre indicado en self.nombre"
 
   def invocar(self):
     """Saludar al usuario"""
@@ -220,7 +220,7 @@ class Saludar(Habilidad):
 
 Ahora, la descripción es más útil:
 
-<img src="./img/python-repl-vertical.png" align=right width=100px>
+<img src="./img/-repl-vertical.png" align=right width=100px>
 
 ```pycon
 >>> mundo2 = Saludar("mundo")
@@ -246,9 +246,9 @@ De paso, podemos modificar la función `ayuda` para que muestre la **documentaci
 
 Con estos dos cambios, la clase `Habilidad` quedaría como sigue:
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 class Habilidad:
   '''Abstracción del concepto de habilidad en un asistente.'''
 
@@ -274,7 +274,7 @@ class Habilidad:
 
 Si volvemos a utilizar la clase `Saludar` inicial (no la versión 2), el resultado sería este:
 
-<img src="./img/python-repl-vertical.png" align=right width=100px>
+<img src="./img/-repl-vertical.png" align=right width=100px>
 
 ```pycon
 >>> a = Saludar("pepe")
@@ -296,15 +296,15 @@ Es decir, siempre saluda por igual.
 
 Los métodos en una clase también pueden aceptar argumentos, como una función normal:
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 class SaludarAAlguien(Habilidad):
   def invocar(self, nombre='anónimo'):
     print(f'Hola, {nombre}, yo soy {self.nombre}')
 ```
 
-<img src="./img/python-repl-vertical.png" align=right width=100px>
+<img src="./img/-repl-vertical.png" align=right width=100px>
 
 ```pycon
 >>> mundo = SaludarAAlguien('mundo')
@@ -324,9 +324,9 @@ En este caso, como cada criptomoneda tiene una tasa de conversión diferente, se
 
 Por tanto, vamos a crear una habilidad `Divisas`, que tenga un atributo que determine la tasa de conversión:
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 class Divisas(Habilidad):
   def __init__(self, nombre, descripcion=None, tasa=0.85):
     self.nombre = nombre
@@ -340,7 +340,7 @@ class Divisas(Habilidad):
 
 La forma de utilizar esta habilidad es la siguiente:
 
-<img src="./img/python-repl-vertical.png" align=right width=100px>
+<img src="./img/-repl-vertical.png" align=right width=100px>
 
 ```pycon
 >>> bitcoin2euro = Divisas('bitcoin2euro', tasa=49929.38)
@@ -363,9 +363,9 @@ Segundo, **llamaremos explı́citamente al constructor de la clase de la que her
 Este último paso se realiza mediante la función super<sup>[1](#super)</sup>.
 El resultado es este:
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 class Divisas(Habilidad):
   def __init__(self, *args, tasa=0.85, **kwargs):
     # La clase padre (Habilidad, en este caso) se encargará de inicializar los atributos por nosotros
@@ -397,9 +397,9 @@ Además, método adicional se encargará de mostrar la ayuda, y será llamado cu
 Habrá dos tipos de ayuda: una general, con todas las habilidades disponibles y su descripción; y uno especı́fico, cuando se pida ayuda de una habilidad en concreto.
 Partiremos de este código (disponible en la plantilla):
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 class Menu:
   '''Menú interactivo de gestión de habilidades.'''
   
@@ -504,9 +504,9 @@ En este apartado vamos a crear una habilidad `ListaDeLaCompra`, con la misma fun
 Podemos partir de la siguiente clase:
 
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 class ListaDeLaCompra(Habilidad):
     """Gestión muy simple de lista de la compra"""
     def __init__(self, *args, **kwargs):
@@ -524,7 +524,7 @@ __**Nota**: En la habilidad `ListaDeLaCompra` estamos sobreescribiendo (sobrecar
 
 Para probar el funcionamiento de la nueva clase, podemos hacerlo manualmente:
 
-<img src="./img/python-repl-vertical.png" align=right width=100px>
+<img src="./img/-repl-vertical.png" align=right width=100px>
 
 ```pycon
 >>> from habilidades import ListaDeLaCompra
@@ -543,9 +543,9 @@ Como hemos visto en el apartado anterior, el método `invocar` se complica cuand
 Para solucionarlo, podemos crear una clase nueva `HabilidadSubcomandos`, que herede de la clase Habilidad y nos permita añadir "subcomandos" a una habilidad.
 Para ello, partiremos del siguiente código (disponible en la plantilla):
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 class HabilidadSubcomandos(Habilidad):
   '''Un tipo de habilidad que permite invocar varios sub-comandos'''
   
@@ -585,9 +585,9 @@ En ambos casos se pide reemplazar la lı́nea `raise NotImplementedError` con el
 Una vez se ha desarrollado la clase `HabilidadSubcomandos`, 
 Para poder probar la implementación, se proporciona la siguiente habilidad completa de ejemplo:
 
-<img src="./img/python.png" align=right width=100px>
+<img src="./img/.png" align=right width=100px>
 
-```python
+```
 class ListaDeLaCompra(HabilidadSubcomandos):
   '''Gestión muy simple de lista de la compra'''
 
@@ -605,7 +605,7 @@ class ListaDeLaCompra(HabilidadSubcomandos):
 
   def insertar(self, producto, precio, categoría, etiquetas="", prioridad="1"):
     '''Insertar un producto nuevo'''
-    self.productos.append(producto, float(precio), categoria, etiquetas.split(','), int(prioridad))
+    self.productos.append((producto, float(precio), categoria, etiquetas.split(','), int(prioridad))
 
   def listar(self):
     '''Mostrar el listado de productos'''
@@ -714,7 +714,7 @@ Los tests pueden invocarse en cualquier momento en la lı́nea de comando. Si to
 <img src="./img/shell.png" align=right width=100px>
 
 ```shell
-$ python test.py
+$  test.py
 .....
 ----------------------------------------------------------------------
 Ran 5 tests in 0.000s
@@ -726,7 +726,7 @@ Si, por el contrario, hay algún fallo en el código, se mostrará el número de
 <img src="./img/shell.png" align=right width=100px>
 
 ```shell
-$ python test.py
+$  test.py
 EEEEEEEE
 ======================================================================
 ERROR: test_divisas (__main__.TestHabilidades)
@@ -753,7 +753,7 @@ Para entregar el proyecto, se deberá subir a Moodle en la tarea "Entrega del pr
 Durante el proyecto se utilizan tres tipos de código.
 Por un lado, código a escribir en la línea de comandos (_command line_), también conocida como terminal o consola.
 En el ejemplo de abajo, vemos cómo ejecutamos
-el comando `python --version`, que imprime por pantalla la versión de Python en el sistema.
+el comando ` --version`, que imprime por pantalla la versión de Python en el sistema.
 
 <img src="./img/shell.png" align=right width=100px>
 
@@ -762,7 +762,7 @@ $ python --version
 Python 3.10.12
 ```
 
-Por otro lado, hay fragmentos de sesión del intérprete de comandos de python.
+Por otro lado, hay fragmentos de sesión del intérprete de comandos de Python.
 Podemos acceder al intérprete directamente ejecutando el comando Python en nuestra terminal:
 
 <img src="./img/shell.png" align=right width=100px>
@@ -799,7 +799,7 @@ def funcion(parametro):
 
 También utilizaremos notas para resaltar consejos o aspectos importantes:
 
-_**Nota**: todas las líneas ejecutadas durante una sesión de python o de consola se guardan en el historial. Se puede acceder a una línea anterior mediante las flechas del teclado o pulsando `Ctrl+P` repetidamente hasta llegar a la línea deseada._
+_**Nota**: todas las líneas ejecutadas durante una sesión de Python o de consola se guardan en el historial. Se puede acceder a una línea anterior mediante las flechas del teclado o pulsando `Ctrl+P` repetidamente hasta llegar a la línea deseada._
 
 ### Enlaces
 
